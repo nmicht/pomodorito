@@ -26,11 +26,44 @@ class Pomodoro extends React.Component {
     return moment.duration(minutes * 60, 'seconds');
   }
 
+  /**
+   * [handleStartClick description]
+   * @return {[type]} [description]
+   */
+  handleStartClick = () => {
+     const intervalId = setInterval( this.timer, 1000);
+     this.setState({ intervalId });
+  }
+
+  /**
+   * [timer description]
+   * @return {[type]} [description]
+   */
+   timer = () => {
+     this.setState((state) => {
+         const seconds = state.currentDuration.asSeconds();
+         if (seconds <= 1) {
+             clearInterval(state.intervalId);
+             // Debemos cambiar al nuevo break y aumentar el contador de breaks
+         }
+         return {
+           currentDuration: moment.duration(seconds - 1, 'seconds')
+         };
+     });
+   }
+
   render() {
     return (
       <div>
-          <Counter time={15000} />
-          { /*botones*/ }
+          <Counter time={this.state.currentDuration.asMilliseconds()} />
+          <div>
+            <button onClick={this.handleStartClick}>
+              Start
+            </button>
+            <button>
+              Reset
+            </button>
+          </div>
       </div>
     );
   }
