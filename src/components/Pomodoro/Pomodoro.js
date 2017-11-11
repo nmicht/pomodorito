@@ -5,6 +5,22 @@ import Counter from '../Counter';
 
 const MAX_BREAKS = 3;
 
+const btnStyles = {
+  display: "inline-block",
+  fontWeight: "400",
+  textAlign: "center",
+  whiteSpace: "nowrap",
+  verticalAlign: "middle",
+  userSelect: "none",
+  border: "1px solid transparent",
+  padding: ".375rem .75rem",
+  fontSize: "1rem",
+  lineHeight: "1.5",
+  borderRadius: ".25rem",
+  backgroundColor: "rgb(98, 218, 252)",
+  margin: "0 20px",
+}
+
 /**
  * [state description]
  * @type {Object}
@@ -93,10 +109,10 @@ class Pomodoro extends React.Component {
       <div>
           <Counter time={this.state.currentDuration.asMilliseconds()} />
           <div>
-            <button onClick={this.handleStartClick}>
+            <button style={btnStyles} onClick={this.handleStartClick}>
               Start
             </button>
-            <button>
+            <button style={btnStyles} >
               Reset
             </button>
           </div>
