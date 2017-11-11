@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import Counter from '../Counter';
 
 const MAX_BREAKS = 3;
@@ -100,5 +101,11 @@ class Pomodoro extends React.Component {
     );
   }
 }
+
+Pomodoro.propTypes = {
+  pomodoro: PropTypes.number.isRequired,
+  shortBreak: PropTypes.number.isRequired,
+  longBreak: PropTypes.number.isRequired,
+};
 
 export default Pomodoro;
