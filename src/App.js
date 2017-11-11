@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Counter from './components/Counter';
+import Pomodoro from './components/Pomodoro';
 import logo from './logo.svg';
 import './App.css';
 
@@ -11,7 +11,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Pomodorito</h1>
         </header>
-        <Counter minutes={10} seconds={15} />
+        <Pomodoro />
       </div>
     );
   }
