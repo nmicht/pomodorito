@@ -34,7 +34,7 @@ class Pomodoro extends React.Component {
    * @return {[type]} [description]
    */
   handleStartClick = () => {
-     const intervalId = setInterval( this.timer, 1000);
+     const intervalId = setInterval( this.timer, 10);
      this.setState({ intervalId });
   }
 
@@ -78,12 +78,15 @@ class Pomodoro extends React.Component {
 
      const nextTime = this.getNextTime();
 
+     this.props.onTimerFinish(this.state.currentBreak);
+
      return {
          currentBreak: nextTime,
          currentDuration: this.setDuration(this.props[nextTime]),
          breaksCount,
      };
    }
+
 
   render() {
     return (
@@ -106,6 +109,7 @@ Pomodoro.propTypes = {
   pomodoro: PropTypes.number.isRequired,
   shortBreak: PropTypes.number.isRequired,
   longBreak: PropTypes.number.isRequired,
+  onTimerFinish: PropTypes.func,
 };
 
 export default Pomodoro;
