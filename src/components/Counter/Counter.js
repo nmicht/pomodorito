@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Counter = () => {
+const Counter = (props) => {
    return (
-     <span>00:00</span>
+     <span>{props.minutes}:{props.seconds}</span>
    );
 }
 
