@@ -1,13 +1,15 @@
 import React from 'react';
 import Counter from '../Counter';
 
-const Pomodoro = () => {
-   return (
-     <div>
-         <Counter minutes={10} seconds={15} />
-         //...botones…
-     </div>
-   );
+class Pomodoro extends React.Component {
+  render() {
+    return (
+      <div>
+          <Counter time={15000} />
+          { /*botones*/ }
+      </div>
+    );
+  }
 }
 
 export default Pomodoro;
