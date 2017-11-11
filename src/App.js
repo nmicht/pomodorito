@@ -11,7 +11,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Pomodorito</h1>
         </header>
-        <Pomodoro />
+        <Pomodoro
+             pomodoro={2}
+             shortBreak={1}
+             longBreak={3}
+        />
       </div>
     );
   }
