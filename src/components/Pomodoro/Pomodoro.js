@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import Counter from '../Counter';
 
+const MAX_BREAKS = 3;
+
 /**
  * [state description]
  * @type {Object}
@@ -44,12 +46,42 @@ class Pomodoro extends React.Component {
          const seconds = state.currentDuration.asSeconds();
          if (seconds <= 1) {
              clearInterval(state.intervalId);
-             // Debemos cambiar al nuevo break y aumentar el contador de breaks
+             return this.finishTime();
          }
          return {
            currentDuration: moment.duration(seconds - 1, 'seconds')
          };
      });
+   }
+
+   getNextTime = () => {
+     if (this.state.currentBreak === 'pomodoro') {
+         if (this.state.breaksCount === MAX_BREAKS) {
+           return 'longBreak';
+         }
+
+         return 'shortBreak';
+     }
+
+     return 'pomodoro';
+   }
+
+   finishTime = () => {
+     let breaksCount = this.state.breaksCount;
+
+     if (this.state.currentBreak === 'shortBreak') {
+       breaksCount += 1;
+     } else if (breaksCount === MAX_BREAKS) {
+       breaksCount = 0;
+     }
+
+     const nextTime = this.getNextTime();
+
+     return {
+         currentBreak: nextTime,
+         currentDuration: this.setDuration(this.props[nextTime]),
+         breaksCount,
+     };
    }
 
   render() {
