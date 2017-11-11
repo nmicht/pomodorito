@@ -1,8 +1,9 @@
 import React from 'react';
+import moment from 'moment';
 
-const Counter = ({minutes, seconds}) => {
+const Counter = ({time}) => {
    return (
-     <span>{minutes}:{seconds}</span>
+     <span>{moment(time).format('mm:ss')}</span>
    );
 }
 
